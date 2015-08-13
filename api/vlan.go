@@ -53,12 +53,12 @@ func (n *Node) VlanConfigure(vid string, cmds []string) string {
 }
 
 func (n *Node) AddTrunkGroups(vid string, name string) string {
-    ins := fmt.Sprintf("trunk group %s", name)
-    return n.VlanConfigure(vid, []string{ins})
+    cmd := fmt.Sprintf("trunk group %s", name)
+    return n.VlanConfigure(vid, []string{cmd})
 }
 
 func (n *Node) RemoveTrunkGroups(vid string, name string) string {
-    ins := fmt.Sprintf("no trunk group %s", name)
-    return n.VlanConfigure(vid, []string{ins})
+    cmd := fmt.Sprintf("no trunk group %s", name)
+    return n.VlanConfigure(vid, []string{cmd})
 }
 
