@@ -1,0 +1,8 @@
+{
+	"arista-laxo": {
+		"ipaddress": "",
+		"username": "admin",
+		"password": "",
+		"transport": "http"
+	}
+}
