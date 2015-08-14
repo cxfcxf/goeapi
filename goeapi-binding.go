@@ -7,7 +7,7 @@ import (
 
 func main() {
     var nodes goeapi.Nodes
-    nodes.ParseConfig("config.json")
+    nodes.ParseEapiConfig("config.json")
 
     //send := []string{"ip address 10.200.6.1/24"}
     //fmt.Println(nodes["arista-laxo"].Configure(send))
