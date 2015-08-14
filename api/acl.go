@@ -5,18 +5,15 @@ import (
 )
 
 func (n *Node) CreateStandardAcl(name string) string {
-    cmd := fmt.Sprintf("ip access-list standard %s", name)
-    return n.Configure([]string{cmd})
+    return n.Configure([]string{fmt.Sprintf("ip access-list standard %s", name)})
 }
 
 func (n *Node) DeleteStandardAcl(name string) string {
-    cmd := fmt.Sprintf("no ip access-list standard %s", name)
-    return n.Configure([]string{cmd})
+    return n.Configure([]string{fmt.Sprintf("no ip access-list standard %s", name)})
 }
 
 func (n *Node) DefaultStandardAcl(name string) string {
-    cmd := fmt.Sprintf("default ip access-list standard %s", name)
-    return n.Configure([]string{cmd})
+    return n.Configure([]string{fmt.Sprintf("default ip access-list standard %s", name)})
 }
 
 func (n *Node) UpdateEntryStdAcl(name, seqno, action, addr, prefixlen string, log bool) string {

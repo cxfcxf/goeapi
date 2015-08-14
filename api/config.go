@@ -14,7 +14,7 @@ type Node struct {
     Trans   string  `json:"transport"`
 }
 
-func (ns *Nodes) ParseConfig(file string) { 
+func (ns *Nodes) ParseEapiConfig(file string) { 
     f, err := ioutil.ReadFile(file)
     if err != nil {
         panic(err)
@@ -24,4 +24,26 @@ func (ns *Nodes) ParseConfig(file string) {
     if err != nil {
         panic(err)
     }
+}
+
+func (n *Node) ParseEosRunConfig() string {
+    res := []byte(n.RunCmds([]string{"enable", "show running-config"}, "text"))
+    var ret Rcfg
+    err := json.Unmarshal(res ,&ret)
+    if err != nil {panic(err)}
+    if str, ok := ret.Result[1]["output"].(string); ok {
+        return str
+    }
+    return "can not convert interface to string"
+}
+
+func (n *Node) ParseEosStartConfig() string {
+    res := []byte(n.RunCmds([]string{"enable", "show startup-config"}, "text"))
+    var ret Rcfg
+    err := json.Unmarshal(res ,&ret)
+    if err != nil {panic(err)}
+    if str, ok := ret.Result[1]["output"].(string); ok {
+        return str
+    }
+    return "can not convert interface to string"
 }

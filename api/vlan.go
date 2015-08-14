@@ -18,8 +18,7 @@ func IsVlan(vid string) bool {
 
 func (n *Node) VlanGet(vid string) string {
     if IsVlan(vid) {
-        command := fmt.Sprint("show vlan %s", vid)
-        return n.Configure([]string{command})
+        return n.Configure([]string{fmt.Sprint("show vlan %s", vid)})
     }
     return "vlan id not valid"
 }
@@ -30,35 +29,30 @@ func (n *Node) VlanGetAll() string {
 
 func (n *Node) VlanCreate(vid string) string {
     if IsVlan(vid) {
-        command := fmt.Sprintf("vlan %s", vid)
-        return n.Configure([]string{command})
+        return n.Configure([]string{fmt.Sprintf("vlan %s", vid)})
     }
     return "vlan id not valid"
 }
 
 func (n *Node) VlanDelete(vid string) string {
     if IsVlan(vid) {
-        command := fmt.Sprintf("no vlan %s", vid)
-        return n.Configure([]string{command})
+        return n.Configure([]string{fmt.Sprintf("no vlan %s", vid)})
     }
     return "vlan id not valid"
 }
 
 func (n *Node) VlanConfigure(vid string, cmds []string) string {
     if IsVlan(vid) {
-        inszero := fmt.Sprintf("vlan %s", vid)
-        return n.Configure(append([]string{inszero}, cmds...))
+        return n.Configure(append([]string{fmt.Sprintf("vlan %s", vid)}, cmds...))
     }
     return "vlan id not valid"
 }
 
 func (n *Node) AddTrunkGroups(vid string, name string) string {
-    cmd := fmt.Sprintf("trunk group %s", name)
-    return n.VlanConfigure(vid, []string{cmd})
+    return n.VlanConfigure(vid, []string{fmt.Sprintf("trunk group %s", name)})
 }
 
 func (n *Node) RemoveTrunkGroups(vid string, name string) string {
-    cmd := fmt.Sprintf("no trunk group %s", name)
-    return n.VlanConfigure(vid, []string{cmd})
+    return n.VlanConfigure(vid, []string{fmt.Sprintf("no trunk group %s", name)})
 }
 

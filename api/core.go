@@ -31,7 +31,6 @@ func (n *Node) RunCmds(cmds []string, format string) string {
     defer resp.Body.Close()
     body, _ := ioutil.ReadAll(resp.Body)
     return string(body)
-
 }
 
 func (n *Node) Enable(cmds []string) string {
@@ -49,5 +48,3 @@ func (n *Node) Running_config() string {
 func (n *Node) Startup_config() string {
     return n.Enable([]string{"show startup-config"})
 }
-
-

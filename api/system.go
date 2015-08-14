@@ -13,20 +13,9 @@ type Rcfg struct {
     Id      int
 }
 
-func (n *Node) ParseEosConfig() string {
-    res := []byte(n.RunCmds([]string{"enable", "show running-config"}, "text"))
-    var ret Rcfg
-    err := json.Unmarshal(res ,&ret)
-    if err != nil {panic(err)}
-    if str, ok := ret.Result[1]["output"].(string); ok {
-        return str
-    }
-    return "can not convert interface to string"
-}
-
 func (n *Node) GetHostName() string {
     re := regexp.MustCompile("hostname")
-    config := strings.Split(n.ParseEosConfig(), "\n")
+    config := strings.Split(n.ParseEosRunConfig(), "\n")
     for _, line := range config {
         if re.MatchString(line) {
             return strings.Split(line, " ")[1]
@@ -36,7 +25,7 @@ func (n *Node) GetHostName() string {
 }
 
 func (n *Node) GetIpRouting() bool {
-    config := strings.Split(n.ParseEosConfig(), "\n")
+    config := strings.Split(n.ParseEosRunConfig(), "\n")
     for _, line := range config {
         if line == "ip routing" {
             return true
@@ -46,8 +35,7 @@ func (n *Node) GetIpRouting() bool {
 }
 
 func (n *Node) SetHostName(hostname string) string {
-    cmd := fmt.Sprintf("hostname %s", hostname)
-    return n.Configure([]string{cmd})
+    return n.Configure([]string{fmt.Sprintf("hostname %s", hostname)})
 }
 
 func (n *Node) SetIpRouting() string {
