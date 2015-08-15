@@ -12,8 +12,7 @@ most of methods are based on enable, configuire mode
 * Arista EOS 4.12 or later
 * Arista eAPI enabled for at least one transport (see Official EOS Config Guide
   at arista.com for details)
-
-* 
+* Most of Golang version will be fine.
 
 # Installation
 
@@ -21,8 +20,10 @@ most of methods are based on enable, configuire mode
 
 # Import
 
-`import "github/cxfcxf/goeapi/api"
+`import "github/cxfcxf/goeapi/api`
 
+
+# Notice
 
 you can use goeapi-binding.go as an example for initlizing Node (think it as a Object in python)
 
