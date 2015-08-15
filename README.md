@@ -20,7 +20,7 @@ most of methods are based on enable, configuire mode
 
 # Import
 
-`import "github/cxfcxf/goeapi/api`
+`import "github/cxfcxf/goeapi/api"`
 
 
 # Notice
