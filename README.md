@@ -2,6 +2,10 @@
 
 still under construction.
 
+will build a command tool for using api
+
+most of methods are based on enable, configuire mode
+
 
 ## Requirements
 
@@ -15,10 +19,20 @@ still under construction.
 
 `go get github/cxfcxf/goeapi/api`
 
-you can use goeapi-binding.go as an example. initilized the Node
+# Import
+
+`import "github/cxfcxf/goeapi/api"
+
+
+you can use goeapi-binding.go as an example for initlizing Node (think it as a Object in python)
+
 you can also write binary tools to distribute.
 
 
 # License
 
 Mit
+
+# Contact
+
+you can contact me at siegfried.chen@gmail.com
