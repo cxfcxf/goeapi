@@ -1,7 +1,8 @@
 package api
 
 import (
-	"fmt"
+//	"fmt"
+	"regexp"
 	"strings"
 )
 
@@ -19,7 +20,7 @@ func (n *Node) UsersGetAll() []string {
 
 func (n *Node) UsersGet(username string) string {
 	re := regexp.MustCompile(username)
-	for _, user := n.UsersGetAll() {
+	for _, user := range n.UsersGetAll() {
 		if re.MatchString(user) {
 			return user
 		}

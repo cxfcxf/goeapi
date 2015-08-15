@@ -2,16 +2,9 @@ package api
 
 import (
     "fmt"
-    "encoding/json"
     "strings"
     "regexp"
 )
-
-type Rcfg struct {
-    Jsonrpc string             `json:"jsonrpc"`
-    Result  []map[string]interface{}
-    Id      int
-}
 
 func (n *Node) GetHostName() string {
     re := regexp.MustCompile("hostname")

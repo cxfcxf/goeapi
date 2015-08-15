@@ -30,7 +30,21 @@ func (n *Node) RunCmds(cmds []string, format string) string {
     }
     defer resp.Body.Close()
     body, _ := ioutil.ReadAll(resp.Body)
-    return string(body)
+    
+    var result map[string]interface{}
+
+    err = json.Unmarshal(body, &result)
+    if err != nil {
+        panic(err)
+    }
+    for k, v := range result {
+        if k == "result" || k == "error" {
+            resultjson, err := json.Marshal(v)
+            if err != nil {panic(err)}
+            return string(resultjson)
+        }
+    }
+    return "should never hit here"
 }
 
 func (n *Node) Enable(cmds []string) string {
@@ -41,10 +55,10 @@ func (n *Node) Configure(cmds []string) string {
     return n.RunCmds(append([]string{"enable", "configure"}, cmds...), "json")
 }
 
-func (n *Node) Running_config() string {
+func (n *Node) RunningConfig() string {
     return n.Enable([]string{"show running-config"})
 }
 
-func (n *Node) Startup_config() string {
+func (n *Node) StartupConfig() string {
     return n.Enable([]string{"show startup-config"})
 }

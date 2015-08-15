@@ -2,7 +2,7 @@ package main
 
 import (
     "fmt"
-    goeapi "github.com/cxfcxf/goeapi/api"
+    goeapi "./api"
 )
 
 func main() {

@@ -14,6 +14,12 @@ type Node struct {
     Trans   string  `json:"transport"`
 }
 
+type Eoscfg struct {
+    Jsonrpc string   `json:"jsonrpc"`
+    Result  []map[string]interface{}
+    Id      int
+}
+
 func (ns *Nodes) ParseEapiConfig(file string) { 
     f, err := ioutil.ReadFile(file)
     if err != nil {
@@ -28,10 +34,12 @@ func (ns *Nodes) ParseEapiConfig(file string) {
 
 func (n *Node) ParseEosRunConfig() string {
     res := []byte(n.RunCmds([]string{"enable", "show running-config"}, "text"))
-    var ret Rcfg
+
+    var ret []map[string]interface{}
     err := json.Unmarshal(res ,&ret)
     if err != nil {panic(err)}
-    if str, ok := ret.Result[1]["output"].(string); ok {
+
+    if str, ok := ret[1]["output"].(string); ok {
         return str
     }
     return "can not convert interface to string"
@@ -39,10 +47,12 @@ func (n *Node) ParseEosRunConfig() string {
 
 func (n *Node) ParseEosStartConfig() string {
     res := []byte(n.RunCmds([]string{"enable", "show startup-config"}, "text"))
-    var ret Rcfg
+    
+    var ret []map[string]interface{}
     err := json.Unmarshal(res ,&ret)
     if err != nil {panic(err)}
-    if str, ok := ret.Result[1]["output"].(string); ok {
+
+    if str, ok := ret[1]["output"].(string); ok {
         return str
     }
     return "can not convert interface to string"
