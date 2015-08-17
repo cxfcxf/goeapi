@@ -35,6 +35,6 @@ func (n *Node) SetIpRouting() string {
     return n.Configure([]string{"ip routing"})
 }
 
-func (n *Node) WriteMem*() string {
+func (n *Node) WriteMemory() string {
     return n.Configure([]string{"write memory"})
 }
