@@ -34,3 +34,7 @@ func (n *Node) SetHostName(hostname string) string {
 func (n *Node) SetIpRouting() string {
     return n.Configure([]string{"ip routing"})
 }
+
+func (n *Node) WriteMem*() string {
+    return n.Configure([]string{"write memory"})
+}
