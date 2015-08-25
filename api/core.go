@@ -62,3 +62,4 @@ func (n *Node) RunningConfig() string {
 func (n *Node) StartupConfig() string {
     return n.Enable([]string{"show startup-config"})
 }
+

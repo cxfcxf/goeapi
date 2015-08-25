@@ -1,11 +1,8 @@
 # Arista eApi Golang Library
 
-still under construction.
-
-will build a command tool for using api
-
 most of methods are based on enable, configuire mode
 
+added addtional ssh method call for enable api
 
 ## Requirements
 
@@ -25,9 +22,9 @@ most of methods are based on enable, configuire mode
 
 # Notice
 
-you can use goeapi-binding.go as an example for initlizing Node (think it as a Object in python)
+* Please use eapictl.go as a example for using ssh call
 
-you can also write binary tools to distribute.
+* Please use goeapi-binding.go as an example for jsonrpc call
 
 
 # License
